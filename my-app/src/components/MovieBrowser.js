@@ -1,6 +1,6 @@
 import React from "react";
 import queryString from 'query-string';
-import Header from './Header';
+import MovieList from "./MovieList";
 
 class MovieBrowser extends React.Component {
     componentDidMount() {
@@ -13,12 +13,15 @@ class MovieBrowser extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {}
     }
 
     render() {
         return(
             <div>
                 <p>Movie Browser</p>
+                <p></p>
+                <MovieList movies={this.props.movies}/>
             </div>
 
         );
