@@ -7,11 +7,15 @@ class MovieListItem extends React.Component {
 
     render() {
         return (
-            <div>
-                {/* poster: w9Z7A0GHEhIp7etpj0vyKOeU1Wx.jpg */}
-                <img src={`https://image.tmdb.org/t/p/w342/` + this.props.poster} />
-                <li id={this.props.id}>{this.props.title}, {this.props.year}, {this.props.rating}</li>
-            </div>
+            <li id={this.props.id} className='movie-list-item' onClick={this.props.expandDetails}>
+                <div>
+                    <figure>
+                        <img src={`https://image.tmdb.org/t/p/w342/` + this.props.poster} />
+                    </figure>
+                    <p>{this.props.title}, {this.props.year}, {this.props.rating}</p>
+                </div>
+            </li>
+
 
         )
 

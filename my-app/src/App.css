@@ -49,3 +49,14 @@ nav {
   list-style: none;
   width: 50%;
 }
+
+.movie-list-item {
+  list-style: none;
+}
+
+.movie-list-item>div {
+  display: flex;
+}
+
+.movie-list {
+}

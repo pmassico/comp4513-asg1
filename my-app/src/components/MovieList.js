@@ -8,15 +8,15 @@ class MovieList extends React.Component {
 
     render() {
         return(
-            <ul>
+            <ul className='movie-list'>
                 {this.props.movies.map((movie, index) =>
                     <MovieListItem
-
+                        expandDetails={this.props.expandDetails}
                         title={movie.title}
                         poster={movie.poster}
                         year={movie.release_date}
                         rating={movie.ratings.average}
-                        id={movie.title}
+                        id={movie.id}
                         key={index}/>)}
             </ul>
 
