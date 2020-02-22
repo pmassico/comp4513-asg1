@@ -25,7 +25,7 @@ class Home extends React.Component {
                         <button>Show All Movies</button>
                     </Link>
 
-                    <Link to={'/movies?search='+ this.state.search}>
+                    <Link to={`/movies/search/${this.state.search}`}>
                         <button>Show Matching Movies</button>
                     </Link>
                 </div>

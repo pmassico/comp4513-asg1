@@ -50,13 +50,63 @@ nav {
   width: 50%;
 }
 
-.movie-list-item {
+.movie-list-item, .fav-item {
   list-style: none;
 }
 
-.movie-list-item>div {
+.favorites {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-auto-flow: column;
+
+  align-items: center;
+  grid-gap: 5px;
+
+  padding: 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.grid-container img {
+  height: 75px;
+}
+
+.grid-container figure {
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 0px;
+  padding: 0px;
+}
+
+.grid-container > div {
+  text-align: center;
+  width: 100%;
   display: flex;
 }
 
-.movie-list {
+.grid-row button {
+  text-align: center;
 }
+
+.movie-title {
+  width: 50%;
+}
+
+.movie-year, .movie-rating {
+  width: 20%;
+}
+
+.movie-title p {
+  text-align: left;
+}
+
+.favorites img {
+  height: 50px;
+}
+
+/* https://www.w3schools.com/cssref/tryit.asp?filename=trycss_grid-template-columns */
+.grid-container {}

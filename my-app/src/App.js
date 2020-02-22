@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import About from "./components/About";
 import { Route } from 'react-router-dom';
 import MovieList from "./components/MovieList";
+import MovieDetails from "./components/MovieDetails";
 
 class App extends React.Component {
     constructor(props) {
@@ -23,7 +24,6 @@ class App extends React.Component {
             const data = await fetch(URL);
             const items = await data.json();
             this.setState( {movies: items } );
-            console.log(items)
         }
         catch (error) {
             console.error(error);
@@ -34,9 +34,15 @@ class App extends React.Component {
         return (
                 <div className="App">
                     <Header />
-                    <Route path='/' exact component={Home}/>
-                    <Route path='/movies' render = { (props) =>
-                        <MovieBrowser movies={this.state.movies}/>}/>
+                    <Route path='/' exact component={Home} />
+
+                    <Route path='/movies' exact render = { (props) =>
+                        <MovieBrowser movies={this.state.movies}/>} />
+
+                    <Route path='/movies/search/:search' exact render = { (props) =>
+                        <MovieBrowser movies={this.state.movies} search={props.match.params.search}/>} />
+
+                    <Route path='/movie-details/:id' component={MovieDetails}/>
                     <Route path='/about' component={About} />
                     {/*<Route to='/movies' exact render = {props  =>*/}
                     {/*    <MovieBrowser />} />*/}
