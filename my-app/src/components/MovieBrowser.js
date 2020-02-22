@@ -3,6 +3,8 @@ import queryString from 'query-string';
 import MovieList from "./MovieList";
 import MovieDetails from "./MovieDetails";
 import Favorites from "./Favorites";
+import Filters from "./Filters";
+import {Link} from 'react-router-dom';
 
 class MovieBrowser extends React.Component {
     componentDidMount() {
@@ -44,44 +46,47 @@ class MovieBrowser extends React.Component {
     //     //this.setState({ detailView: true });
     // };
 
-    filteredMovies = () => {
-        const filtered = this.props.movies.filter((movie) => movie.title === `%${this.props.search}%`);
-        console.log(filtered)
-    };
-
-    /**
-     * Filter array items based on search criteria (query)
-     */
-    filterItems = (arr, query) => {
-        return arr.filter(function(el) {
-            return el.toLowerCase().indexOf(query.toLowerCase()) !== -1
-        })
+    searchArray = (a, b) => {
+        return a.matches(b)
     }
+
+    searchedMovies = () => {
+        const movies = this.props.movies;
+        let re = new RegExp(this.props.search, 'gi');
+
+        let filtered = movies.filter((movie) => movie.title.match(re));
+        console.log(filtered);
+        return filtered;
+    };
 
     render() {
             if (this.state.search != null) {
                 // filter movies and display filtered movies
                 return(
-                    <div>
-                        <p>Movie Browser</p>
-                        <p>Matching "{this.state.search}"</p>
+                    <div className='browser'>
+                        <div className='header-row'>
+                            <h1>Movie Browser</h1>
+                            <p>Matching "{this.state.search}"</p>
+                            <Link to='/movies'><button>Clear Search</button></Link>
+                        </div>
                         <Favorites favorites={this.state.favorites} />
-
-                        <MovieList movies={this.props.movies}
+                        <Filters />
+                        <MovieList movies={this.searchedMovies()}
                                    addToFavs={this.addToFavs} />
-                        {/* favorites bar */}
-                        {/* filter sidebar */}
                     </div>
                 );
             } else {
                 return(
-                    <div>
-                        <p>Movie Browser</p>
-                        <p>All</p>
+                    <div className='browser'>
+                        <div className='header-row'>
+                            <h1>Movie Browser</h1>
+                            <p>All</p>
+                        </div>
+
+                        <Favorites favorites={this.state.favorites} />
+                        <Filters />
                         <MovieList movies={this.props.movies}
                                    addToFavs={this.addToFavs} />
-                        {/* favorites bar */}
-                        {/* filter sidebar */}
                     </div>
                 );
             }

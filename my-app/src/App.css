@@ -2,41 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 nav {
   display: flex;
   justify-content: space-around;
@@ -54,6 +19,18 @@ nav {
   list-style: none;
 }
 
+.browser {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-gap: 0px;
+  padding: 0px;
+}
+
+.header-row, .favorites {
+  grid-column: 1 / -1;
+}
+
+/* copied favorites CSS from lab 3 */
 .favorites {
   display: grid;
   grid-template-columns: repeat(15, 1fr);
@@ -68,11 +45,19 @@ nav {
   text-transform: uppercase;
 }
 
-.grid-container img {
-  height: 75px;
+.details-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 0px;
+  padding: 0px;
 }
 
-.grid-container figure {
+.details-poster {
+  height: 400px;
+}
+
+.grid-container img {
+  height: 75px;
 }
 
 .grid-container {
@@ -84,7 +69,7 @@ nav {
 
 .grid-container > div {
   text-align: center;
-  width: 100%;
+  width: 70%;
   display: flex;
 }
 
@@ -100,6 +85,18 @@ nav {
   width: 20%;
 }
 
+.filters {
+  text-align: left;
+}
+
+.filters div {
+  margin-left: 8px;
+}
+
+.filters .labelh {
+  font-weight: bold;
+}
+
 .movie-title p {
   text-align: left;
 }
@@ -109,4 +106,5 @@ nav {
 }
 
 /* https://www.w3schools.com/cssref/tryit.asp?filename=trycss_grid-template-columns */
+
 .grid-container {}
