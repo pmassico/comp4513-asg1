@@ -1,5 +1,6 @@
 import React from "react";
 import * as cloneDeep from 'lodash/cloneDeep';
+import CastAndCrew from "./CastAndCrew";
 
 class MovieDetails extends React.Component {
     constructor(props) {
@@ -14,7 +15,15 @@ class MovieDetails extends React.Component {
             const URL = `http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies.php?id=` + this.props.match.params.id;
             const data = await fetch(URL);
             const item = await data.json();
-            this.setState( {movie: item } );
+
+            let production = null;
+
+            if (typeof(item.production) != "undefined") {
+                production = cloneDeep(item.production);
+            }
+
+            this.setState( {movie: item,
+                                  production: production } );
             //console.log(item)
         }
         catch (error) {
@@ -22,7 +31,7 @@ class MovieDetails extends React.Component {
         }
     }
 
-    detailsPane = () => {
+    movieDetails = () => {
         const ratings = {...this.state.movie.ratings};
         const details = {...this.state.movie.details};
         return (
@@ -47,53 +56,6 @@ class MovieDetails extends React.Component {
         );
     };
 
-    singleCast = (actor) => {
-        const production = {...this.state.movie.production};
-        const cast = {...production.cast};
-
-        console.log(cast);
-
-
-
-        return(0
-            // <div>
-            //     <p>{actor.cast_id}</p>
-            //     <p>{actor.character}</p>
-            //     <p>{actor.credit_id}</p>
-            //     <p>{actor.gender}</p>
-            //     <p>{actor.id}</p>
-            //     <p>{actor.name}</p>
-            //     <p>{actor.order}</p>
-            // </div>
-        );
-    }
-
-    castAndCrew = () => {
-        const production = {...this.state.movie.production};
-        const cast = production.cast;
-        const companies = {...production.companies};
-        const countries = {...production.countries};
-        const crews = {...production.crews};
-
-
-        return(
-            <div className='other-details'>
-                <div>
-                    <h3>Cast</h3>
-                    {this.singleCast(cast)}
-                </div>
-
-                <div>
-                    <h3>Crew</h3>
-
-                </div>
-
-
-
-            </div>
-        );
-    }
-
     render() {
         return (
             <div id={this.state.movie.id} className='browser'>
@@ -101,8 +63,12 @@ class MovieDetails extends React.Component {
                     <h1>Movie Browser</h1>
                     <p>Details</p>
                 </div>
-                {this.detailsPane()}
-                {this.castAndCrew()}
+                {this.movieDetails()}
+                <CastAndCrew production={this.state.production}/>
+                {/*          cast={this.state.production.cast}
+                             crew={this.state.production.crew}
+                             companies={this.state.production.companies}
+                             countries={this.state.production.countries} */}
                 {/* a link to return to previous component */}
             </div>
         );
