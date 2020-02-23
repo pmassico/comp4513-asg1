@@ -21,17 +21,7 @@ class MovieBrowser extends React.Component {
             detailView: false,
             currentMovie: [],
             search: "",
-            favorites: [],
             movies: []}
-    }
-
-    addToFavs = (e) => {
-        //console.log(this.props.movies.filter((movie) => movie.id == e.currentTarget.id));
-        const movieToAdd = this.props.movies.filter((movie) => movie.id == e.currentTarget.id);
-        const favsCopy = cloneDeep(this.state.favorites);
-        favsCopy.push({ id: e.currentTarget.id,
-                        poster: movieToAdd[0].poster });
-        this.setState({favorites: favsCopy});
     }
 
     searchedMovies = () => {
@@ -42,22 +32,6 @@ class MovieBrowser extends React.Component {
         //console.log(filtered);
         return filtered;
     };
-
-    resetFilter = () => {
-        // undo whichever filter was done
-
-    }
-
-    browserHeader = () => {
-        // add "filter state" to this? All / Filtered /
-        return (
-            <div className='header-row'>
-                <h1>Movie Browser</h1>
-                <p>Matching "{this.state.search}"</p>
-                <Link to='/movies'><button>Clear Search</button></Link>
-            </div>
-        );
-    }
 
     render() {
             if (this.state.search != null) {
@@ -71,12 +45,12 @@ class MovieBrowser extends React.Component {
                         {/* put sort headers here */}
                         </div>
 
-                        <Favorites favorites={this.state.favorites} />
+                        <Favorites favorites={this.props.favorites} />
                         <Filters filterTitle={this.props.filterTitle}
                                  filterYear={this.props.filterYear}
                                  filterRating={this.props.filterRating}/>
                         <MovieList movies={this.searchedMovies()}
-                                   addToFavs={this.addToFavs} />
+                                   addToFavs={this.props.addToFavs} />
                     </div>
                 );
             } else {
@@ -87,13 +61,13 @@ class MovieBrowser extends React.Component {
                             <p>All</p>
                         </div>
 
-                        <Favorites favorites={this.state.favorites} />
+                        <Favorites favorites={this.props.favorites} />
                         <Filters filterTitle={this.props.filterTitle}
                                  filterYear={this.props.filterYear}
                                  filterRating={this.props.filterRating} />
                         {/* this.state.movies will be everything by default, and then modified by filters */}
                         <MovieList movies={this.props.movies}
-                                   addToFavs={this.addToFavs} />
+                                   addToFavs={this.props.addToFavs} />
                     </div>
                 );
             }

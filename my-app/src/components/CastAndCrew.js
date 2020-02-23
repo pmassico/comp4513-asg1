@@ -13,13 +13,17 @@ class CastAndCrew extends React.Component {
     // gender
     // id
     // order
+    // {c.cast_id}{c.character}{c.credit_id}{c.gender}{c.id}{c.order}
 
     populateCast = () => {
         if (this.props.production != null) {
             const {cast} = this.props.production;
+
+            cast.sort((a,b) => a.order-b.order);
+
             return cast.map((c, i) =>
                 <div key={i}>
-                    <p>{c.cast_id}{c.character}{c.credit_id}{c.gender}{c.id}{c.order}</p>
+                    <img src="" /><p>{c.name} as {c.character}</p>
                 </div>)
         }
     };
@@ -30,14 +34,31 @@ class CastAndCrew extends React.Component {
     // gender
     // id
     // job
+    // {c.credit_id}{c.department}{c.gender}{c.id}{c.job}{c.name}
 
     populateCrew = () => {
         if (this.props.production != null) {
             const {crew} = this.props.production;
+
+            crew.sort((a,b) => {
+                // https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
+                const dep1 = a.department.toLowerCase();
+                const dep2 = b.department.toLowerCase();
+
+                let comparison = 0;
+                if (dep1 > dep2) {
+                    comparison = 1;
+                } else if (dep1 < dep2) {
+                    comparison = -1;
+                }
+                return comparison;
+            });
+
             return crew.map((c, i) => {
                 return(
                     <div key={i}>
-                        <p>{c.credit_id}{c.department}{c.gender}{c.id}{c.job}{c.name}</p>
+                        <h4>{c.department}</h4>
+                        <p>{c.job}: {c.name} / {c.department}</p>
                     </div>
                 );
 

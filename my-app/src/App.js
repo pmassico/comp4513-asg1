@@ -180,6 +180,15 @@ class App extends React.Component {
         // TODO: fix year filter and copy paste to rating
     };
 
+    addToFavs = (e) => {
+        //console.log(this.props.movies.filter((movie) => movie.id == e.currentTarget.id));
+        const movieToAdd = this.state.movies.filter((movie) => movie.id == e.currentTarget.id);
+        const favsCopy = cloneDeep(this.state.favorites);
+        favsCopy.push({ id: e.currentTarget.id,
+            poster: movieToAdd[0].poster });
+        this.setState({favorites: favsCopy});
+    };
+
     render() {
         return (
                 <div className="App">
@@ -188,18 +197,26 @@ class App extends React.Component {
 
                     <Route path='/movies' exact render = { (props) =>
                         <MovieBrowser movies={this.state.movies}
+                                      addToFavs={this.addToFavs}
+                                      favorites={this.state.favorites}
                                       filterTitle={this.filterTitle}
                                       filterYear={this.filterYear}
-                                      filterRating={this.filterRating} />} />
+                                      filterRating={this.filterRating} /> } />
 
                     <Route path='/movies/search/:search' exact render = { (props) =>
-                        <MovieBrowser movies={this.state.movies}
-                                      search={props.match.params.search}/>}
+                        <MovieBrowser search={props.match.params.search}
+                                      movies={this.state.movies}
+                                      addToFavs={this.addToFavs}
+                                      favorites={this.state.favorites}
                                       filterTitle={this.filterTitle}
                                       filterYear={this.filterYear}
-                                      filterRating={this.filterRating} />
+                                      filterRating={this.filterRating} /> } />
 
-                    <Route path='/movie-details/:id' component={MovieDetails}/>
+                    <Route path='/movie-details/:id' exact render = { (props) =>
+                        <MovieDetails id={props.match.params.id}
+                                      favorites={this.state.favorites}
+                                      addToFavs={this.addToFavs}/> } />
+
                     <Route path='/about' component={About} />
                     {/*<Route to='/movies' exact render = {props  =>*/}
                     {/*    <MovieBrowser />} />*/}
