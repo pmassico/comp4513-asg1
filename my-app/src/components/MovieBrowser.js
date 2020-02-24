@@ -33,6 +33,8 @@ class MovieBrowser extends React.Component {
         return filtered;
     };
 
+
+
     render() {
             if (this.state.search != null) {
                 // filter movies and display filtered movies

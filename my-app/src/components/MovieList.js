@@ -7,9 +7,36 @@ class MovieList extends React.Component {
         super(props);
     }
 
+    listHeader = () => {
+        return(
+            <div className='row sort-by'>
+                <div className='col'>sort by</div>
+                <div className='col-5'><h5><a onClick={this.sortMovies}>title</a></h5></div>
+                <div className='col'><h5><a onClick={this.sortMovies}>release_date</a></h5></div>
+                <div className='col'><h5><a onClick={this.sortMovies}>rating</a></h5></div>
+                <div className='col'></div>
+            </div>
+        );
+    };
+
+    sortMovies = (e) => {
+        let sortBy = e.currentTarget.innerHTML;
+
+        if (sortBy === "title") {
+
+
+        } else if (sortBy === "release_date") {
+
+        } else if (sortBy === "rating") {
+
+        }
+
+    }
+
     render() {
         return(
-            <div className='grid-container'>
+            <div className='movie-list container'>
+                {this.listHeader()}
                 { this.props.movies.map((movie, index) => {
                     let rating = "";
                     if (typeof(movie.ratings) != "undefined") {rating = movie.ratings.average}
@@ -26,8 +53,7 @@ class MovieList extends React.Component {
                         key={index}
                         index={index}/>
                         );
-                })
-                }
+                })}
 
             </div>
 

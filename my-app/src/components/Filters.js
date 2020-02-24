@@ -64,53 +64,90 @@ class Filters extends React.Component {
 
     render() {
         return (
-            <div className='filters'>
+            <div className='filters container'>
                 <h3>Filters</h3>
-                <div>
-                    <label htmlFor='title' className='labelh'>Title</label><br/>
+                <div className='row'>
+                    <label htmlFor='title' className='labelh'>Title</label>
+                </div>
+                <div className='row'>
                     <input type='text' name='title' id='title'
                            value={this.state.title} onChange={this.handleChange} />
                 </div>
-                <div>
-                    <label htmlFor='year' className='labelh'>Year</label><br/>
-                    <input type='radio' name='year' id='radio-year_before' onChange={this.filterYear} />
-                    <label>Before</label>
-                    <input type='number' name='year' id='year_before'
-                           value={this.state.year_before} onChange={this.handleChange} /><br/>
-
-                    <input type='radio' name='year' id='radio-year_after' onChange={this.filterYear} />
-                    <label>After</label>
-                    <input type='number' name='year' id='year_after'
-                           value={this.state.year_after} onChange={this.handleChange} /><br/>
-
-                    <input type='radio' name='year' id='radio-year_between' onChange={this.filterYear} />
-                    <label>Between</label>
-                    <input type='number' name='year' id='year_lower'
-                           value={this.state.year_lower} onChange={this.handleChange} />
-                    <input type='number' name='year' id='year_upper'
-                           value={this.state.year_upper} onChange={this.handleChange} /><br/>
+                <div className='row'>
+                    <label htmlFor='year' className='labelh'>Year</label>
                 </div>
-                <div>
-                    <label htmlFor='rating' className='labelh'>Rating</label><br/>
-                    <input type='radio' name='rating' id='radio-rating_below'
-                           onChange={this.filterRating}/>
-                    <label>Below</label>
-                    <input type='range' min='0' max='10' name='rating' id='rating_below'
-                           value={this.state.rating_below} onChange={this.handleChange} /><br/>
+                <div className='row'>
+                    <div className='col'>
+                        <input type='radio' name='year' id='radio-year_before' onChange={this.filterYear} />
+                        <label>Before</label>
+                    </div>
+                    <div className='col'>
+                        <input type='number' name='year' id='year_before'
+                               value={this.state.year_before} onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <input type='radio' name='year' id='radio-year_after' onChange={this.filterYear} />
+                        <label>After</label>
+                    </div>
+                    <div className='col'>
+                        <input type='number' name='year' id='year_after'
+                               value={this.state.year_after} onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <input type='radio' name='year' id='radio-year_between' onChange={this.filterYear} />
+                        <label>Between</label>
+                    </div>
+                    <div className='col'>
+                        <input type='number' name='year' id='year_lower'
+                               value={this.state.year_lower} onChange={this.handleChange} />
+                        <input type='number' name='year' id='year_upper'
+                               value={this.state.year_upper} onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div className='row'>
+                    <label htmlFor='rating' className='labelh'>Rating</label>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <input type='radio' name='rating' id='radio-rating_below'
+                               onChange={this.filterRating}/>
+                        <label>Below</label>
+                    </div>
+                    <div className='col'>
+                        <input type='range' min='0' max='10' name='rating' id='rating_below'
+                               value={this.state.rating_below} onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <input type='radio' name='rating' id='radio-rating_above'
+                               onChange={this.filterRating} />
+                        <label>Above</label>
+                    </div>
+                    <div className='col'>
+                        <input type='range' min='0' max='10' name='rating' id='rating_above'
+                               value={this.state.rating_above} onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <input type='radio' name='rating' id='radio-rating_between'
+                               onChange={this.filterRating}/>
+                        <label>Between</label>
+                    </div>
+                    <div className='col'>
+                        <input type='range' min='0' max='10' name='rating' id='rating_lower'
+                               value={this.state.rating_lower} onChange={this.handleChange} />
+                        <input type='range' min='0' max='10' name='rating' id='rating_upper'
+                               value={this.state.rating_upper} onChange={this.handleChange} />
+                    </div>
 
-                    <input type='radio' name='rating' id='radio-rating_above'
-                           onChange={this.filterRating} />
-                    <label>Above</label>
-                    <input type='range' min='0' max='10' name='rating' id='rating_above'
-                           value={this.state.rating_above} onChange={this.handleChange} /><br/>
 
-                    <input type='radio' name='rating' id='radio-rating_between'
-                           onChange={this.filterRating}/>
-                    <label>Between</label>
-                    <input type='range' min='0' max='10' name='rating' id='rating_lower'
-                           value={this.state.rating_lower} onChange={this.handleChange} />
-                    <input type='range' min='0' max='10' name='rating' id='rating_upper'
-                           value={this.state.rating_upper} onChange={this.handleChange} />
+
                 </div>
             </div>
         );

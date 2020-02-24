@@ -56,33 +56,12 @@ nav {
   height: 400px;
 }
 
-.grid-container img {
-  height: 75px;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: auto;
-  grid-gap: 0px;
-  padding: 0px;
-}
-
-.grid-container > div {
-  text-align: center;
-  width: 70%;
-  display: flex;
+#movie-list-poster {
+  height: 100px;
 }
 
 .grid-row button {
   text-align: center;
-}
-
-.movie-title {
-  width: 50%;
-}
-
-.movie-year, .movie-rating {
-  width: 20%;
 }
 
 .filters {
@@ -97,8 +76,22 @@ nav {
   font-weight: bold;
 }
 
-.movie-title p {
+.movie-list {
   text-align: left;
+}
+
+.sort-by h5 {
+  font-size: medium;
+  text-transform: uppercase;
+  color: lightgrey;
+}
+
+.sort-by h5:hover {
+  color: black;
+}
+
+.sort-by active {
+
 }
 
 .favorites img {
