@@ -37,6 +37,7 @@ class App extends React.Component {
         if (e.currentTarget.value.length > 0) {
             console.log(e.currentTarget.value);
             const movies = cloneDeep(this.state.movies);
+
             let re = new RegExp(e.currentTarget.value, 'gi');
 
             let filtered = movies.filter((movie) => movie.title.match(re));
@@ -52,132 +53,125 @@ class App extends React.Component {
     };
 
     filterYear = (comparison, ...values) => {
-        if (comparison === "before" && values[0] > 0) {
-            //look for all movies in movies with release_date under given value
-            const movies = cloneDeep(this.state.movies);
-            let matches = [];
+        // TODO: can add logic
+        // that resets filter pool when radio button is changed + takes into consideration other filters
+        const movies = cloneDeep(this.state.movies);
+        let matches = [];
 
+        if (comparison === "before" && values[0] >= 0) {
+            //look for all movies in movies with release_date under given value
             for (let m in movies) {
                 // grab first 4 characters of release date
                 if (movies[m] != null) {
                     let year = movies[m].release_date.substring(0, 4);
                     if (Number(year) <= values[0]) {
-                        matches.push(m);
+
+                        matches.push(movies[m]);
                     }
                 } else {
-                    continue;
+                    // no movie to match, do nothing
                 }
             }
 
             this.setState({ movies: matches })
-        } else if (comparison === "after" && values[0] > 0) {
 
-        } else if (comparison === "between" && values[0] > 0 && values[1] > 0) {
+        } else if (comparison === "after" && values[0] >= 0) {
+            for (let m in movies) {
+                // grab first 4 characters of release date
+                if (movies[m] != null) {
+                    let year = movies[m].release_date.substring(0, 4);
+                    if (Number(year) >= values[0]) {
+
+                        matches.push(movies[m]);
+                    }
+                } else {
+                    // no movie to match, do nothing
+                }
+            }
+
+            this.setState({ movies: matches })
+
+        } else if (comparison === "between" && values[0] >= 0 && values[1] >= 0) {
+            for (let m in movies) {
+                // grab first 4 characters of release date
+                if (movies[m] != null) {
+                    let year = movies[m].release_date.substring(0, 4);
+                    if (Number(year) >= values[0] && Number(year) <= values[1]) {
+
+                        matches.push(movies[m]);
+                    }
+                } else {
+                    // no movie to match, do nothing
+                }
+            }
+
+            this.setState({ movies: matches })
 
         }
     };
 
-    // filterYear = (comparison, ...values) => {
-    //
-    //     if (comparison == "before" && values[0] > 0) {
-    //         // look for all movies in movies with release_date under referenceToTextInput.value
-    //         let condition = value;
-    //         const movies = cloneDeep(this.state.movies);
-    //         let matches = [];
-    //
-    //         for (let m in movies) {
-    //             // grab first 4 characters of release date
-    //             let year = m.release_date.subString(0, 4);
-    //             //
-    //             if (Number(year) <= Number(condition)) {
-    //                 matches.push(m);
-    //             }
-    //         }
-    //
-    //         this.setState({ movies: matches })
-    //     }
-    // };
+    filterRating = (comparison, ...values) => {
+        // TODO: can add logic
+        // that resets filter pool when radio button is changed + takes into consideration other filters
+        const movies = cloneDeep(this.state.movies);
+        let matches = [];
 
-    /*
-    filterYear = (e) => {
-        // TODO: "this" does not work yet. im pretending it works so i can move on and figure it out later
-        // TODO: updating text fields updates state, values are grabbed from state and not from input elements
-
-        // also:
-        // TODO: some way to add and remove filters individually
-
-        // retrieve state
-
-        // TEMP VARIABLES
-        const tempState = [1950, 1950, 1900, 2000];
-        const referenceToTextInput = e.currentTarget;
-        const referenceToSecondTextInput = e.currentTarget;
-        const value = referenceToTextInput.value;
-        const value2 = referenceToSecondTextInput.value;
-        const id = referenceToTextInput.id;
-
-        //if length of change >0 then apply filter, if =0 then reset filter
-
-        // or radio-year-before
-        if (id == "number-year-before" && Number(value) > 0) {
-            // look for all movies in movies with release_date under referenceToTextInput.value
-            let condition = value;
-            const movies = cloneDeep(this.state.movies);
-            let matches = [];
-
+        if (comparison === "below" && values[0] >= 0) {
+            //look for all movies in movies with release_date under given value
             for (let m in movies) {
                 // grab first 4 characters of release date
-                let year = m.release_date.subString(0, 4);
-                //
-                if (Number(year) <= Number(condition)) {
-                    matches.push(m);
+                if (movies[m] != null) {
+                    if (typeof(movies[m].ratings) != "undefined") {
+                        let rating = movies[m].ratings.average;
+                        if (Number(rating) <= values[0]) {
+
+                            matches.push(movies[m]);
+                        }
+                    }
+                } else {
+                    // no movie to match, do nothing
                 }
             }
 
             this.setState({ movies: matches })
-        } else if (id == "number-year-after" && Number(value) > 0) {
-            // look for all movies in movies with release_date above referenceToTextInput.value
-            let condition = value;
-            const movies = cloneDeep(this.state.movies);
-            let matches = [];
 
+        } else if (comparison === "above" && values[0] >= 0) {
             for (let m in movies) {
                 // grab first 4 characters of release date
-                let year = m.release_date.subString(0, 4);
-                //
-                if (Number(year) >= Number(condition)) {
-                    matches.push(m);
+                if (movies[m] != null) {
+                    if (typeof(movies[m].ratings) != "undefined") {
+                        let rating = movies[m].ratings.average;
+                        if (Number(rating) >= values[0]) {
+
+                            matches.push(movies[m]);
+                        }
+                    }
+                } else {
+                    // no movie to match, do nothing
                 }
             }
 
             this.setState({ movies: matches })
-        } else if (id == "number-year-after" && Number(value) > 0 && Number(value2) > 0) {
-            // look for all movies in movies with release_date between referenceToTextInput.value and referencetosecond...
-            let condition = value;
-            let condition2 = value2;
-            const movies = cloneDeep(this.state.movies);
-            let matches = [];
 
+        } else if (comparison === "between" && values[0] >= 0 && values[1] >= 0) {
             for (let m in movies) {
                 // grab first 4 characters of release date
-                let year = m.release_date.subString(0, 4);
-                //
-                if (Number(year) >= Number(condition) && Number(year) >= Number(condition2)) {
-                    matches.push(m);
+                if (movies[m] != null) {
+                    if (typeof(movies[m].ratings) != "undefined") {
+                        let rating = movies[m].ratings.average;
+                        if (Number(rating) >= values[0] && Number(rating) <= values[0]) {
+
+                            matches.push(movies[m]);
+                        }
+                    }
+                } else {
+                    // no movie to match, do nothing
                 }
             }
 
             this.setState({ movies: matches })
+
         }
-
-        else {
-            alert("Invalid input. Please enter a positive value.")
-        }
-    };
-    */
-
-    filterRating = () => {
-        // TODO: fix year filter and copy paste to rating
     };
 
     addToFavs = (e) => {

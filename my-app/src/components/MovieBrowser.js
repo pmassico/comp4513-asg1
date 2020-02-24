@@ -46,9 +46,11 @@ class MovieBrowser extends React.Component {
                         </div>
 
                         <Favorites favorites={this.props.favorites} />
+
                         <Filters filterTitle={this.props.filterTitle}
                                  filterYear={this.props.filterYear}
                                  filterRating={this.props.filterRating}/>
+
                         <MovieList movies={this.searchedMovies()}
                                    addToFavs={this.props.addToFavs} />
                     </div>
