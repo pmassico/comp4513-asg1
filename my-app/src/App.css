@@ -22,6 +22,10 @@ Nav {
   border-radius: 5px;
 }
 
+div.card-columns {
+  margin-top: 1em;
+}
+
 /* fixed cut off bottom border */
 /*https://github.com/twbs/bootstrap/issues/27124#issuecomment-509009622*/
 .accordion div.card:only-child { border-bottom: 1px solid rgba(0, 0, 0, 0.125); border-radius: calc(0.25rem - 1px); }
@@ -29,14 +33,13 @@ Nav {
 /* copied favorites CSS from lab 3 */
 .favorites {
   display: grid;
-  grid-template-columns: repeat(15, 1fr);
+  grid-template-columns: repeat(27, 1fr);
   grid-auto-flow: column;
-
   align-items: center;
-  grid-gap: 5px;
+  grid-gap: 15px;
 
   border-radius: 5px;
-  margin: 1em 1.2em 1em 1.2em;
+  margin: 1em 1.2em 0em 1.2em;
   padding: 1.5em 2em 1.5em 2em;
   color: white;
   background-color: rgb(52, 58, 64);

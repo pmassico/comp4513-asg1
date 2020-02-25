@@ -26,17 +26,17 @@ class CastAndCrew extends React.Component {
             cast.sort((a,b) => a.order-b.order);
 
             return (
-                <CardColumns>
-                    {cast.map((c, i) =>
-                    <Card bg='dark' text='white' className="p-2" key={i} >
-                        <img src="" />
-                        <Card.Body>
-                            <Card.Title>{c.name}</Card.Title>
-                            <Card.Text>{c.character}</Card.Text>
-                        </Card.Body>
+                    <CardColumns>
+                        {cast.map((c, i) =>
+                            <Card bg='dark' text='white' httclassName="p-2" key={i} >
+                                <img src="" />
+                                <Card.Body>
+                                    <Card.Title>{c.name}</Card.Title>
+                                    <Card.Text>{c.character}</Card.Text>
+                                </Card.Body>
 
-                    </Card>)}
-                </CardColumns>
+                            </Card>)}
+                    </CardColumns>
             );
         }
     };
@@ -84,7 +84,6 @@ class CastAndCrew extends React.Component {
         //const companies = {...production.companies};
         //const countries = {...production.countries};
         return(
-            <div className='row rounded border' style={{paddingTop:"1rem"}}>
                         <Tabs defaultActiveKey="cast">
                             <Tab eventKey="cast" title="Cast">
                                 {this.populateCast()}
@@ -93,7 +92,6 @@ class CastAndCrew extends React.Component {
                                 {this.populateCrew()}
                             </Tab>
                         </Tabs>
-            </div>
         );
 
     }

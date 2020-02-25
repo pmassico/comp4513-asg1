@@ -32,6 +32,13 @@ class App extends React.Component {
         }
     }
 
+    deleteFav = (index) => {
+        const favCopy = cloneDeep(this.state.favorites);
+        console.log("deleted " + index);
+        favCopy.splice(index, 1);
+        this.setState({favorites: favCopy})
+    };
+
     filterTitle = (e) => {
         // if length of change >0 then apply filter, if =0 then reset filter
         if (e.currentTarget.value.length > 0) {
@@ -53,8 +60,6 @@ class App extends React.Component {
     };
 
     filterYear = (comparison, ...values) => {
-        // TODO: can add logic
-        // that resets filter pool when radio button is changed + takes into consideration other filters
         const movies = cloneDeep(this.state.movies);
         let matches = [];
 
@@ -111,8 +116,6 @@ class App extends React.Component {
     };
 
     filterRating = (comparison, ...values) => {
-        // TODO: can add logic
-        // that resets filter pool when radio button is changed + takes into consideration other filters
         const movies = cloneDeep(this.state.movies);
         let matches = [];
 
@@ -185,13 +188,14 @@ class App extends React.Component {
 
     render() {
         return (
-                <div className="App container">
+                <div className="App container-fluid">
                     <Header />
                     <Route path='/' exact component={Home} />
 
                     <Route path='/movies' exact render = { (props) =>
                         <MovieBrowser movies={this.state.movies}
                                       addToFavs={this.addToFavs}
+                                      deleteFav={this.deleteFav}
                                       favorites={this.state.favorites}
                                       filterTitle={this.filterTitle}
                                       filterYear={this.filterYear}
@@ -201,6 +205,7 @@ class App extends React.Component {
                         <MovieBrowser search={props.match.params.search}
                                       movies={this.state.movies}
                                       addToFavs={this.addToFavs}
+                                      deleteFav={this.deleteFav}
                                       favorites={this.state.favorites}
                                       filterTitle={this.filterTitle}
                                       filterYear={this.filterYear}
@@ -209,11 +214,10 @@ class App extends React.Component {
                     <Route path='/movie-details/:id' exact render = { (props) =>
                         <MovieDetails id={props.match.params.id}
                                       favorites={this.state.favorites}
-                                      addToFavs={this.addToFavs}/> } />
+                                      addToFavs={this.addToFavs}
+                                      deleteFav={this.deleteFav}/> } />
 
                     <Route path='/about' component={About} />
-                    {/*<Route to='/movies' exact render = {props  =>*/}
-                    {/*    <MovieBrowser />} />*/}
                 </div>
         );
     }

@@ -26,7 +26,7 @@ class MovieList extends React.Component {
 
     render() {
         return(
-            <div className="col-8 table-area">
+            <div className="col-9 table-area">
                 <Table bordered hover variant="dark" className='movie-list'>
                     {this.listHeader()}
                     { this.props.movies.map((movie, index) => {

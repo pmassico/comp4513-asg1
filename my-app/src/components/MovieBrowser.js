@@ -45,7 +45,7 @@ class MovieBrowser extends React.Component {
                         {/*</div>*/}
                         <div className='row'>
                             <div className='row'>
-                                <Favorites favorites={this.props.favorites} />
+                                <Favorites favorites={this.props.favorites} deleteFav={this.props.deleteFav} />
                             </div>
 
                             <div className='row'>
@@ -68,9 +68,9 @@ class MovieBrowser extends React.Component {
                         {/*    </div>*/}
                         {/*</div>*/}
                         <div className='row'>
-                            <Favorites favorites={this.props.favorites} />
+                            <Favorites favorites={this.props.favorites} deleteFav={this.props.deleteFav} />
                         </div>
-                        <div className='row'>
+                        <div className='row' style={{marginTop: "1em"}}>
                             <Filters filterTitle={this.props.filterTitle}
                                      filterYear={this.props.filterYear}
                                      filterRating={this.props.filterRating} />

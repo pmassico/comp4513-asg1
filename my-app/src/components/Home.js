@@ -18,9 +18,16 @@ class Home extends React.Component {
     };
 
     render(){
+        let imgUrl = "https://images.unsplash.com/photo-1531278329486-539bf3bd6d5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1825&q=80";
         return(
-            <Container style={{textAlign: "center"}}>
-                <Card bg="dark" text="white" style={{width: "20rem", display:"inline-block"}}>
+            <div className="banner" style = {{ backgroundImage: `url(${imgUrl})`,
+                height: '94vh',
+                overflow: 'hidden',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+                textAlign: "center"}}>
+                <Card bg="dark" text="white" style={{width: "20rem", display:"inline-block", marginTop: "18em"}}>
                     <Card.Header>Movie Browser</Card.Header>
                     <Card.Body>
 
@@ -39,7 +46,7 @@ class Home extends React.Component {
 
                     </Card.Body>
                 </Card>
-            </Container>
+            </div>
         );
     }
 }

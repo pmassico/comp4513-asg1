@@ -33,7 +33,7 @@ class MovieDetails extends React.Component {
         }
     }
 
-    movieDetails = () => {
+    render() {
         const ratings = {...this.state.movie.ratings};
         const details = {...this.state.movie.details};
         let date = "undefined";
@@ -41,34 +41,27 @@ class MovieDetails extends React.Component {
             date = this.state.movie.release_date.split("-");
         }
         return (
-            <div className="row">
-                {/*<Favorites favorites={this.props.favorites}/>*/}
-                <div className='col-4'>
+            <div className='row' id={this.state.movie.id} style={{marginTop: "5em"}}>
+
+                <Favorites favorites={this.props.favorites} deleteFav={this.props.deleteFav}/>
+
+                <div className='col-3'>
                     <Figure>
                         <Figure.Image rounded src={`https://image.tmdb.org/t/p/w342/` + this.state.movie.poster}/>
                     </Figure>
                 </div>
-                <div className='col-8'>
-                    <h2>{this.state.movie.title} ({date[0]})</h2>
+                <div className='col' style={{textAlign: "left"}}>
+                    <p><h2>{this.state.movie.title} </h2><h3>({date[0]})</h3></p>
                     <p>{this.state.movie.tagline}</p>
                     <p>{this.state.movie.runtime} minutes</p>
                     <p>more: <a href={"https://www.imdb.com/title/" + this.state.movie.imdb_id}>imdb</a> / <a href={"https://www.themoviedb.org/movie/" + this.state.movie.tmdb_id}>tmdb</a></p>
                     <p>{"average rating " + ratings.average} ({ratings.count} votes)</p>
                     <p>{"popularity " + ratings.popularity}</p>
                 </div>
-            </div>
-        );
-    };
+                <div className='col-3 rounded border' style={{paddingTop:"1rem", height: "50vh", overflowY: "scroll"}}>
+                    <CastAndCrew production={this.state.production}/>
+                </div>
 
-    render() {
-        return (
-            <div id={this.state.movie.id}>
-
-                <Favorites favorites={this.props.favorites}/>
-
-                {this.movieDetails()}
-
-                <CastAndCrew production={this.state.production}/>
 
                 {/* a link to return to previous component */}
             </div>
