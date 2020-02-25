@@ -1,34 +1,18 @@
+body {
+  background-color: #212121;
+}
+
 .App {
   text-align: center;
 }
 
-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  width: 50%;
-}
-
-.movie-list-item, .fav-item {
+.fav-item {
   list-style: none;
 }
 
-.browser {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  grid-gap: 0px;
-  padding: 0px;
-}
-
-.header-row, .favorites {
-  grid-column: 1 / -1;
-}
+/* fixed cut off bottom border */
+/*https://github.com/twbs/bootstrap/issues/27124#issuecomment-509009622*/
+.accordion div.card:only-child { border-bottom: 1px solid rgba(0, 0, 0, 0.125); border-radius: calc(0.25rem - 1px); }
 
 /* copied favorites CSS from lab 3 */
 .favorites {
@@ -64,20 +48,27 @@ nav {
   text-align: center;
 }
 
+.filters #title {
+  max-width: 15em;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: lightgrey;
+  border-style: solid;
+  box-shadow: none;
+  padding: .375rem .375rem;
+
+}
+
+.filters>div>div>div>div.input-group {
+  margin-bottom: 0.5rem;
+}
+
 .filters {
   text-align: left;
 }
 
-.filters div {
-  margin-left: 8px;
-}
-
-.filters .labelh {
+.labelh {
   font-weight: bold;
-}
-
-.movie-list {
-  text-align: left;
 }
 
 .sort-by h5 {
@@ -90,14 +81,15 @@ nav {
   color: black;
 }
 
-.sort-by active {
-
+Button h5 {
+  margin: 0;
 }
 
 .favorites img {
   height: 50px;
 }
 
-/* https://www.w3schools.com/cssref/tryit.asp?filename=trycss_grid-template-columns */
-
-.grid-container {}
+.table-area {
+  height: 100vh;
+  overflow-y: scroll;
+}

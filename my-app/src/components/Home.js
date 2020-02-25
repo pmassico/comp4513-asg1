@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import Card from "react-bootstrap/Card";
+import {Button} from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import FormControl from "react-bootstrap/FormControl";
 
 class Home extends React.Component {
 
@@ -15,21 +19,27 @@ class Home extends React.Component {
 
     render(){
         return(
-            <div className="banner">
-                <p>Movie Browser - Home</p>
-                <div>
-                    <label htmlFor='search'>Title</label>
-                    <input id='search' name='search' type="text"  onChange={this.handler}></input><br/>
+            <Container style={{textAlign: "center"}}>
+                <Card bg="dark" text="white" style={{width: "20rem", display:"inline-block"}}>
+                    <Card.Header>Movie Browser</Card.Header>
+                    <Card.Body>
 
-                    <Link to='/movies'>
-                        <button>Show All Movies</button>
-                    </Link>
+                        <FormControl placeholder="Movie Title" id='search' name='search' type="text"  onChange={this.handler}
+                         style={{marginBottom: "1rem"}}/>
 
-                    <Link to={`/movies/search/${this.state.search}`}>
-                        <button>Show Matching Movies</button>
-                    </Link>
-                </div>
-            </div>
+                        <Link to={`/movies/search/${this.state.search}`}>
+                            {/* top right bottom left */}
+                            <Button variant="primary" style={{marginRight: "0.5rem"}}>Search</Button>
+                        </Link>
+
+                        <Link to='/movies'>
+                            <Button variant="secondary" style={{marginLeft:"0.5rem"}}>Show All</Button>
+                        </Link>
+
+
+                    </Card.Body>
+                </Card>
+            </Container>
         );
     }
 }

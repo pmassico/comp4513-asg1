@@ -22,7 +22,7 @@ class App extends React.Component {
 
     async componentDidMount() {
         try {
-            const URL = 'http://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL';
+            const URL = 'https://www.randyconnolly.com/funwebdev/3rd/api/movie/movies-brief.php?id=ALL';
             const data = await fetch(URL);
             const items = await data.json();
             this.setState( { movies: items, moviesCopy: items } );
@@ -185,7 +185,7 @@ class App extends React.Component {
 
     render() {
         return (
-                <div className="App">
+                <div className="App container">
                     <Header />
                     <Route path='/' exact component={Home} />
 

@@ -1,19 +1,25 @@
 import React from "react";
 import * as cloneDeep from 'lodash/cloneDeep';
+import {Button, FormLabel, InputGroup, Collapse, Card, Accordion} from "react-bootstrap";
+import {InputGroupText} from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+import {Link} from "react-router-dom";
 
 class Filters extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             title: "",
-            year_after: 1950,
-            year_before: 1950,
-            year_lower: 1900,
-            year_upper: 2000,
+            year_after: null,
+            year_before: null,
+            year_lower: null,
+            year_upper: null,
             rating_below: 5,
             rating_above: 5,
             rating_lower: 5,
-            rating_upper: 5
+            rating_upper: 5,
+            isOpen: true,
+            setIsOpen: false
         };
     }
 
@@ -62,94 +68,90 @@ class Filters extends React.Component {
         }
     };
 
+    toggle = () => {
+        this.setState({isOpen: !this.state.isOpen})
+    }
+
     render() {
         return (
-            <div className='filters container'>
-                <h3>Filters</h3>
-                <div className='row'>
-                    <label htmlFor='title' className='labelh'>Title</label>
-                </div>
-                <div className='row'>
-                    <input type='text' name='title' id='title'
-                           value={this.state.title} onChange={this.handleChange} />
-                </div>
-                <div className='row'>
-                    <label htmlFor='year' className='labelh'>Year</label>
-                </div>
-                <div className='row'>
-                    <div className='col'>
-                        <input type='radio' name='year' id='radio-year_before' onChange={this.filterYear} />
-                        <label>Before</label>
-                    </div>
-                    <div className='col'>
-                        <input type='number' name='year' id='year_before'
-                               value={this.state.year_before} onChange={this.handleChange} />
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col'>
-                        <input type='radio' name='year' id='radio-year_after' onChange={this.filterYear} />
-                        <label>After</label>
-                    </div>
-                    <div className='col'>
-                        <input type='number' name='year' id='year_after'
-                               value={this.state.year_after} onChange={this.handleChange} />
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col'>
-                        <input type='radio' name='year' id='radio-year_between' onChange={this.filterYear} />
-                        <label>Between</label>
-                    </div>
-                    <div className='col'>
-                        <input type='number' name='year' id='year_lower'
-                               value={this.state.year_lower} onChange={this.handleChange} />
-                        <input type='number' name='year' id='year_upper'
-                               value={this.state.year_upper} onChange={this.handleChange} />
-                    </div>
-                </div>
-                <div className='row'>
-                    <label htmlFor='rating' className='labelh'>Rating</label>
-                </div>
-                <div className='row'>
-                    <div className='col'>
-                        <input type='radio' name='rating' id='radio-rating_below'
-                               onChange={this.filterRating}/>
-                        <label>Below</label>
-                    </div>
-                    <div className='col'>
-                        <input type='range' min='0' max='10' name='rating' id='rating_below'
-                               value={this.state.rating_below} onChange={this.handleChange} />
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col'>
-                        <input type='radio' name='rating' id='radio-rating_above'
-                               onChange={this.filterRating} />
-                        <label>Above</label>
-                    </div>
-                    <div className='col'>
-                        <input type='range' min='0' max='10' name='rating' id='rating_above'
-                               value={this.state.rating_above} onChange={this.handleChange} />
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col'>
-                        <input type='radio' name='rating' id='radio-rating_between'
-                               onChange={this.filterRating}/>
-                        <label>Between</label>
-                    </div>
-                    <div className='col'>
-                        <input type='range' min='0' max='10' name='rating' id='rating_lower'
-                               value={this.state.rating_lower} onChange={this.handleChange} />
-                        <input type='range' min='0' max='10' name='rating' id='rating_upper'
-                               value={this.state.rating_upper} onChange={this.handleChange} />
-                    </div>
+            <Accordion defaultActiveKey="0" className='filters col'>
+                <Card bg="dark" text="white" className="rounded">
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="0" onClick={this.toggle}><h5 style={{margin: 0}}>Filters</h5></Accordion.Toggle>
 
 
+                    <Accordion.Collapse eventKey="0">
+                        <Card.Body>
+                            <label htmlFor='title' className='labelh'>Title</label>
+                            <div><FormControl type='text' name='title' id='title' className='' style={{marginBottom: "1rem"}}
+                                                        value={this.state.title} onChange={this.handleChange} /></div>
 
-                </div>
-            </div>
+                            <label htmlFor='year' className='labelh'>Year</label>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Checkbox type='radio' name='year' id='radio-year_before' onChange={this.filterYear} />
+                                </InputGroup.Prepend>
+                                <FormControl placeholder="Before" type='number' name='year' id='year_before'
+                                             value={this.state.year_before} onChange={this.handleChange} />
+                            </InputGroup>
+
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Checkbox type='radio' name='year' id='radio-year_after' onChange={this.filterYear} />
+                                </InputGroup.Prepend>
+                                <FormControl placeholder="After" type='number' name='year' id='year_after'
+                                       value={this.state.year_after} onChange={this.handleChange} />
+                            </InputGroup>
+
+                            <InputGroup style={{marginBottom: "1rem"}}>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Checkbox type='radio' name='year' id='radio-year_between' onChange={this.filterYear} />
+                                </InputGroup.Prepend>
+                                <FormControl placeholder="Between X" type='number' name='year' id='year_lower'
+                                       value={this.state.year_lower} onChange={this.handleChange} />
+                                <FormControl placeholder="and Y" type='number' name='year' id='year_upper'
+                                       value={this.state.year_upper} onChange={this.handleChange} />
+                            </InputGroup>
+
+
+                            <label htmlFor='rating' className='labelh'>Rating</label>
+
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Checkbox type='radio' name='rating' id='radio-rating_below' onChange={this.filterRating}/>
+                                    <InputGroup.Text>Below</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <FormControl type='range' min='0' max='10' name='rating' id='rating_below'
+                                             value={this.state.rating_below} onChange={this.handleChange} />
+                            </InputGroup>
+
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Checkbox type='radio' name='rating' id='radio-rating_above' onChange={this.filterRating} />
+                                    <InputGroup.Text>Above</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <FormControl type='range' min='0' max='10' name='rating' id='rating_above'
+                                       value={this.state.rating_above} onChange={this.handleChange} />
+                            </InputGroup>
+
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Checkbox type='radio' name='rating' id='radio-rating_between' onChange={this.filterRating}/>
+                                    <InputGroup.Text>Between</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <FormControl type='range' min='0' max='10' name='rating' id='rating_lower'
+                                       value={this.state.rating_lower} onChange={this.handleChange} />
+                                       <InputGroup.Text>&</InputGroup.Text>
+                                <FormControl type='range' min='0' max='10' name='rating' id='rating_upper'
+                                       value={this.state.rating_upper} onChange={this.handleChange} />
+                            </InputGroup>
+
+                            <InputGroup style={{marginTop: "1.5rem"}}>
+                                <Link to='/movies'><Button variant="secondary">Reset</Button></Link>
+                            </InputGroup>
+                        </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+            </Accordion>
         );
     }
 }

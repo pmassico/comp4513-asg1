@@ -39,39 +39,34 @@ class MovieBrowser extends React.Component {
             if (this.state.search != null) {
                 // filter movies and display filtered movies
                 return(
-                    <div className='browser'>
-                        <div className='header-row'>
-                            <h1>Movie Browser</h1>
-                            <p>Matching "{this.state.search}"</p>
-                            <Link to='/movies'><button>Clear Search</button></Link>
-                        {/* put sort headers here */}
+                    <div>
+                        <div className='row'>
+                            <Favorites favorites={this.props.favorites} />
+
+                            <Filters filterTitle={this.props.filterTitle}
+                                     filterYear={this.props.filterYear}
+                                     filterRating={this.props.filterRating}/>
+
+                            <div className='table-area'>
+                                <MovieList movies={this.searchedMovies()}
+                                           addToFavs={this.props.addToFavs} />
+                            </div>
+
                         </div>
-
-                        <Favorites favorites={this.props.favorites} />
-
-                        <Filters filterTitle={this.props.filterTitle}
-                                 filterYear={this.props.filterYear}
-                                 filterRating={this.props.filterRating}/>
-
-                        <MovieList movies={this.searchedMovies()}
-                                   addToFavs={this.props.addToFavs} />
                     </div>
                 );
             } else {
                 return(
-                    <div className='browser'>
-                        <div className='header-row'>
-                            <h1>Movie Browser</h1>
-                            <p>All</p>
+                    <div>
+                        <div className='row'>
+                            <Favorites favorites={this.props.favorites} />
+                            <Filters filterTitle={this.props.filterTitle}
+                                     filterYear={this.props.filterYear}
+                                     filterRating={this.props.filterRating} />
+                            {/* this.state.movies will be everything by default, and then modified by filters */}
+                            <MovieList movies={this.props.movies}
+                                       addToFavs={this.props.addToFavs} />
                         </div>
-
-                        <Favorites favorites={this.props.favorites} />
-                        <Filters filterTitle={this.props.filterTitle}
-                                 filterYear={this.props.filterYear}
-                                 filterRating={this.props.filterRating} />
-                        {/* this.state.movies will be everything by default, and then modified by filters */}
-                        <MovieList movies={this.props.movies}
-                                   addToFavs={this.props.addToFavs} />
                     </div>
                 );
             }

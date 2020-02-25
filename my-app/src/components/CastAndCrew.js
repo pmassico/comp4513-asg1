@@ -1,5 +1,9 @@
 import React from "react";
 import * as cloneDeep from 'lodash/cloneDeep';
+import Card from "react-bootstrap/Card";
+import {Tab} from "react-bootstrap";
+import Tabs from "react-bootstrap/Tabs";
+import CardColumns from "react-bootstrap/CardColumns";
 
 class CastAndCrew extends React.Component {
     constructor(props) {
@@ -21,10 +25,19 @@ class CastAndCrew extends React.Component {
 
             cast.sort((a,b) => a.order-b.order);
 
-            return cast.map((c, i) =>
-                <div key={i}>
-                    <img src="" /><p>{c.name} as {c.character}</p>
-                </div>)
+            return (
+                <CardColumns>
+                    {cast.map((c, i) =>
+                    <Card className="p-2" key={i}>
+                        <img src="" />
+                        <Card.Body>
+                            <Card.Title>{c.name}</Card.Title>
+                            <Card.Text>{c.character}</Card.Text>
+                        </Card.Body>
+
+                    </Card>)}
+                </CardColumns>
+            );
         }
     };
 
@@ -71,11 +84,15 @@ class CastAndCrew extends React.Component {
         //const companies = {...production.companies};
         //const countries = {...production.countries};
         return(
-            <div>
-                <h3>Cast</h3>
-                {this.populateCast()}
-                <h3>Crew</h3>
-                {this.populateCrew()}
+            <div className='row rounded border' style={{paddingTop:"1rem"}}>
+                        <Tabs defaultActiveKey="cast">
+                            <Tab eventKey="cast" title="Cast">
+                                {this.populateCast()}
+                            </Tab>
+                            <Tab eventKey="crew" title="Crew">
+                                {this.populateCrew()}
+                            </Tab>
+                        </Tabs>
             </div>
         );
 
