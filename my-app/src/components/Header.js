@@ -50,7 +50,7 @@ class Header extends React.Component {
                             <p><a href='https://thenounproject.com/search/?q=movie&i=2846264'>Logo used: Movie by Srinivas Agra from the Noun Project</a></p>
                             <p><a href="https://github.com/twbs/bootstrap/issues/27124#issuecomment-509009622">fixing cut off accordion border</a></p>
                             <p><a href="https://itnext.io/using-es6-to-destructure-nested-objects-in-javascript-avoid-undefined-errors-that-break-your-code-612ae67913e9">object destructuring</a></p>
-                            <p><a href="https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/">sorting array of objects by property</a></p>ç
+                            <p><a href="https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/">sorting array of objects by property</a></p>
                             <p><a href="https://www.youtube.com/watch?v=NUQkajBdnmQ">React transition group tutorial by Ihatetomatoes on YouTube</a></p>
                         </Modal.Body>
                         <Modal.Footer>

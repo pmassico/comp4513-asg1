@@ -47,7 +47,7 @@ class MovieDetails extends React.Component {
 
                 <div className='col-3'>
                     <Figure>
-                        <Figure.Image rounded src={`https://image.tmdb.org/t/p/w342/` + this.state.movie.poster}/>
+                        <Figure.Image rounded src={`https://image.tmdb.org/t/p/w500/` + this.state.movie.poster}/>
                     </Figure>
                 </div>
                 <div className='col' style={{textAlign: "left"}}>

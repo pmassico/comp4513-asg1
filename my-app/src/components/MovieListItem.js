@@ -19,7 +19,7 @@ class MovieListItem extends React.Component {
                 <td className=''>
                     <Link to={`/movie-details/${this.props.id}`} key={this.props.id}>
                         <figure className='figure'>
-                            <img className='figure-img rounded' id='movie-list-poster' src={`https://image.tmdb.org/t/p/w342` + this.props.poster} alt={this.props.title}/>
+                            <img className='figure-img rounded' id='movie-list-poster' src={`https://image.tmdb.org/t/p/w92` + this.props.poster} alt={this.props.title}/>
                         </figure>
                     </Link>
                 </td>
