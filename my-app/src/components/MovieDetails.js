@@ -53,10 +53,10 @@ class MovieDetails extends React.Component {
                 <div className='col' style={{textAlign: "left"}}>
                     <p><h2>{this.state.movie.title} </h2><h3>({date[0]})</h3></p>
                     <p>{this.state.movie.tagline}</p>
-                    <p>{this.state.movie.runtime} minutes</p>
-                    <p>more: <a href={"https://www.imdb.com/title/" + this.state.movie.imdb_id}>imdb</a> / <a href={"https://www.themoviedb.org/movie/" + this.state.movie.tmdb_id}>tmdb</a></p>
+                    <p>Runtime: {this.state.movie.runtime} minutes</p>
                     <p>{"average rating " + ratings.average} ({ratings.count} votes)</p>
                     <p>{"popularity " + ratings.popularity}</p>
+                    <p>more: <a href={"https://www.imdb.com/title/" + this.state.movie.imdb_id}>imdb</a> / <a href={"https://www.themoviedb.org/movie/" + this.state.movie.tmdb_id}>tmdb</a></p>
                 </div>
                 <div className='col-3 rounded border' style={{paddingTop:"1rem", height: "50vh", overflowY: "scroll"}}>
                     <CastAndCrew production={this.state.production}/>

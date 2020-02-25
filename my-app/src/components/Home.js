@@ -21,12 +21,12 @@ class Home extends React.Component {
         let imgUrl = "https://images.unsplash.com/photo-1531278329486-539bf3bd6d5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1825&q=80";
         return(
             <div className="banner" style = {{ backgroundImage: `url(${imgUrl})`,
-                height: '94vh',
-                overflow: 'hidden',
+                height: '100vh',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat',
-                textAlign: "center"}}>
+                textAlign: "center",
+                margin: "-6em 0 -5em 0"}}>
                 <Card bg="dark" text="white" style={{width: "20rem", display:"inline-block", marginTop: "18em"}}>
                     <Card.Header>Movie Browser</Card.Header>
                     <Card.Body>
@@ -46,6 +46,7 @@ class Home extends React.Component {
 
                     </Card.Body>
                 </Card>
+                <p style={{marginTop: "1em"}}>photo via <a href='https://unsplash.com/@_stfeyes' style={{backgroundColor: "black"}}>Sean Foley (@_stfeyes)</a> on <a href='https://unsplash.com/photos/kMpbE_-jCeI' style={{backgroundColor: "black"}}>unsplash</a></p>
             </div>
         );
     }

@@ -9,6 +9,8 @@ import { Route } from 'react-router-dom';
 import MovieList from "./components/MovieList";
 import MovieDetails from "./components/MovieDetails";
 import * as cloneDeep from "lodash/cloneDeep";
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import Switch from "react-bootstrap/cjs/Switch";
 
 class App extends React.Component {
     constructor(props) {
@@ -38,6 +40,8 @@ class App extends React.Component {
         favCopy.splice(index, 1);
         this.setState({favorites: favCopy})
     };
+
+
 
     filterTitle = (e) => {
         // if length of change >0 then apply filter, if =0 then reset filter
@@ -188,37 +192,45 @@ class App extends React.Component {
 
     render() {
         return (
-                <div className="App container-fluid">
-                    <Header />
-                    <Route path='/' exact component={Home} />
+            <div className="App">
+                <Route render = {({location}) => (
+                    <TransitionGroup>
+                        <CSSTransition
+                            key={location.key}
+                            timeout={300}
+                            classNames="fade">
+                            <Switch location={location}>
+                                <Header />
+                                <Route path='/' exact component={Home} />
+                                <Route path='/movies' exact render = { (props) =>
+                                    <MovieBrowser movies={this.state.movies}
+                                                  addToFavs={this.addToFavs}
+                                                  deleteFav={this.deleteFav}
+                                                  favorites={this.state.favorites}
+                                                  filterTitle={this.filterTitle}
+                                                  filterYear={this.filterYear}
+                                                  filterRating={this.filterRating} /> } />
 
-                    <Route path='/movies' exact render = { (props) =>
-                        <MovieBrowser movies={this.state.movies}
-                                      addToFavs={this.addToFavs}
-                                      deleteFav={this.deleteFav}
-                                      favorites={this.state.favorites}
-                                      filterTitle={this.filterTitle}
-                                      filterYear={this.filterYear}
-                                      filterRating={this.filterRating} /> } />
+                                <Route path='/movies/search/:search' exact render = { (props) =>
+                                    <MovieBrowser search={props.match.params.search}
+                                                  movies={this.state.movies}
+                                                  addToFavs={this.addToFavs}
+                                                  deleteFav={this.deleteFav}
+                                                  favorites={this.state.favorites}
+                                                  filterTitle={this.filterTitle}
+                                                  filterYear={this.filterYear}
+                                                  filterRating={this.filterRating} /> } />
 
-                    <Route path='/movies/search/:search' exact render = { (props) =>
-                        <MovieBrowser search={props.match.params.search}
-                                      movies={this.state.movies}
-                                      addToFavs={this.addToFavs}
-                                      deleteFav={this.deleteFav}
-                                      favorites={this.state.favorites}
-                                      filterTitle={this.filterTitle}
-                                      filterYear={this.filterYear}
-                                      filterRating={this.filterRating} /> } />
-
-                    <Route path='/movie-details/:id' exact render = { (props) =>
-                        <MovieDetails id={props.match.params.id}
-                                      favorites={this.state.favorites}
-                                      addToFavs={this.addToFavs}
-                                      deleteFav={this.deleteFav}/> } />
-
-                    <Route path='/about' component={About} />
-                </div>
+                                <Route path='/movie-details/:id' exact render = { (props) =>
+                                    <MovieDetails id={props.match.params.id}
+                                                  favorites={this.state.favorites}
+                                                  addToFavs={this.addToFavs}
+                                                  deleteFav={this.deleteFav}/> } />
+                            </Switch>
+                        </CSSTransition>
+                    </TransitionGroup>
+                )} />
+            </div>
         );
     }
 

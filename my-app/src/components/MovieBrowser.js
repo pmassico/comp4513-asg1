@@ -40,33 +40,23 @@ class MovieBrowser extends React.Component {
                 // filter movies and display filtered movies
                 return(
                     <div>
-                        {/*<div className='row'>*/}
-                        {/*    <h1>Movie Browser</h1>*/}
-                        {/*</div>*/}
                         <div className='row'>
-                            <div className='row'>
-                                <Favorites favorites={this.props.favorites} deleteFav={this.props.deleteFav} />
-                            </div>
+                            <Favorites favorites={this.props.favorites} deleteFav={this.props.deleteFav} />
+                        </div>
 
-                            <div className='row'>
-                                <Filters filterTitle={this.props.filterTitle}
-                                         filterYear={this.props.filterYear}
-                                         filterRating={this.props.filterRating}/>
+                        <div className='row' style={{marginTop: "1em"}}>
+                            <Filters filterTitle={this.props.filterTitle}
+                                     filterYear={this.props.filterYear}
+                                     filterRating={this.props.filterRating}/>
 
-                                    <MovieList movies={this.searchedMovies()}
-                                               addToFavs={this.props.addToFavs} />
-                            </div>
+                            <MovieList movies={this.searchedMovies()}
+                                       addToFavs={this.props.addToFavs} />
                         </div>
                     </div>
                 );
             } else {
                 return(
                     <div>
-                        {/*<div className='row'>*/}
-                        {/*    <div style={{margin: "auto"}}>*/}
-                        {/*        <h1>Movie Browser</h1>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
                         <div className='row'>
                             <Favorites favorites={this.props.favorites} deleteFav={this.props.deleteFav} />
                         </div>
@@ -76,8 +66,8 @@ class MovieBrowser extends React.Component {
                                      filterRating={this.props.filterRating} />
                             {/* this.state.movies will be everything by default, and then modified by filters */}
 
-                                <MovieList movies={this.props.movies}
-                                           addToFavs={this.props.addToFavs} />
+                            <MovieList movies={this.props.movies}
+                                       addToFavs={this.props.addToFavs} />
                         </div>
                     </div>
                 );
