@@ -6,14 +6,13 @@ class Header extends React.Component {
 
     render() {
         return(
-
-                <Navbar variant="pills">
-                    <Nav>
-                        <Nav.Item><Nav.Link href='/' activeKey="link-1">TODO: A LOGO</Nav.Link></Nav.Item>
-                        <Nav.Item ><Nav.Link href='/movies' activeKey="link-2">Movies</Nav.Link></Nav.Item>
-                        <Nav.Item><Nav.Link href='/about' activeKey="link-3">About</Nav.Link></Nav.Item>
+                <Navbar variant="dark" bg="dark">
+                    <Navbar.Brand href='/'>LOGO</Navbar.Brand>
+                    <Nav className='mr-auto'>
+                        <Nav.Link href='/'>Home</Nav.Link>
+                        <Nav.Link href='/movies'>Movies</Nav.Link>
+                        <Nav.Link href='/about'>About</Nav.Link>
                     </Nav>
-
                 </Navbar>
         );
     }

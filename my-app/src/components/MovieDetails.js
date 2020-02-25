@@ -44,7 +44,7 @@ class MovieDetails extends React.Component {
             <div className="row">
                 {/*<Favorites favorites={this.props.favorites}/>*/}
                 <div className='col-4'>
-                    <Figure >
+                    <Figure>
                         <Figure.Image rounded src={`https://image.tmdb.org/t/p/w342/` + this.state.movie.poster}/>
                     </Figure>
                 </div>

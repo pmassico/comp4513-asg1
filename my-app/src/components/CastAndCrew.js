@@ -28,7 +28,7 @@ class CastAndCrew extends React.Component {
             return (
                 <CardColumns>
                     {cast.map((c, i) =>
-                    <Card className="p-2" key={i}>
+                    <Card bg='dark' text='white' className="p-2" key={i} >
                         <img src="" />
                         <Card.Body>
                             <Card.Title>{c.name}</Card.Title>

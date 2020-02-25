@@ -1,13 +1,25 @@
-body {
-  background-color: #212121;
-}
-
 .App {
   text-align: center;
 }
 
+a>p:hover {
+  text-decoration-color: white;
+}
+
 .fav-item {
   list-style: none;
+}
+
+a>figure, a>figure>img {
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5, a>p, p {
+  color: white;
+}
+
+Nav {
+  border-radius: 5px;
 }
 
 /* fixed cut off bottom border */
@@ -23,7 +35,11 @@ body {
   align-items: center;
   grid-gap: 5px;
 
-  padding: 5px;
+  border-radius: 5px;
+  margin: 1em 1.2em 1em 1.2em;
+  padding: 1.5em 2em 1.5em 2em;
+  color: white;
+  background-color: rgb(52, 58, 64);
   font-size: 0.8em;
   font-weight: bold;
   text-transform: uppercase;

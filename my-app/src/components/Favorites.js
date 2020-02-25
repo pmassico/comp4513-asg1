@@ -7,14 +7,12 @@ class Favorites extends React.Component {
     }
 
     render() {
-        if (this.props.favorites.length > 0) {
-            return(
-                <div className="favorites">
-                    <p>❤ Favorites</p>
-                        {this.props.favorites.map((f, i) => <FavoriteItem key={i} poster={f.poster} alt={f.title} />)}
-                </div>
-            );
-        } else return null;
+        return(
+            <div className="favorites">
+                <p>Favorites</p>
+                {this.props.favorites.map((f, i) => <FavoriteItem key={i} poster={f.poster} alt={f.title} />)}
+            </div>
+        );
     }
 }
 export default Favorites

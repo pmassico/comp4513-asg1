@@ -13,10 +13,10 @@ class MovieList extends React.Component {
         return(
             <thead>
                 <tr className='sort-by'>
-                    <th>sort by</th>
-                    <th><a onClick={this.sortMovies}>title</a></th>
-                    <th><a onClick={this.sortMovies}>release_date</a></th>
-                    <th><a onClick={this.sortMovies}>rating</a></th>
+                    <th>poster</th>
+                    <th>title</th>
+                    <th>released</th>
+                    <th>rating</th>
                     <th></th>
                 </tr>
             </thead>
@@ -24,21 +24,6 @@ class MovieList extends React.Component {
         );
     };
 
-    sortMovies = (e) => {
-        let sortBy = e.currentTarget.innerHTML;
-
-        if (sortBy === "title") {
-
-
-        } else if (sortBy === "release_date") {
-
-        } else if (sortBy === "rating") {
-
-        }
-
-    }
-
-    //'col-8'
     render() {
         return(
             <div className="col-8 table-area">
@@ -49,16 +34,14 @@ class MovieList extends React.Component {
                         if (typeof(movie.ratings) != "undefined") {rating = movie.ratings.average}
 
                         return (
-                            <tbody>
+                            <tbody key={index}>
                             <MovieListItem
                                 addToFavs={this.props.addToFavs}
-                                expandDetails={this.props.expandDetails}
                                 title={movie.title}
                                 poster={movie.poster}
                                 year={movie.release_date}
                                 rating={rating}
                                 id={movie.id}
-                                key={index}
                                 index={index}/>
                             </tbody>);
                     })}

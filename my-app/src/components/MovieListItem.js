@@ -15,7 +15,7 @@ class MovieListItem extends React.Component {
         }
 
         return (
-            <tr id={this.props.id} onClick={this.props.expandDetails}>
+            <tr id={this.props.id}>
                 <td className=''>
                     <Link to={`/movie-details/${this.props.id}`} key={this.props.id}>
                         <figure className='figure'>
